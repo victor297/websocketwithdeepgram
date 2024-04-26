@@ -3,11 +3,13 @@ require("dotenv").config();
 // Add Deepgram so we can get the transcription
 const { Deepgram } = require("@deepgram/sdk");
 const deepgram = new Deepgram(process.env.DG_KEY);
+var server = require("http").createServer();
+var WebSocketServer = require("ws").Server;
 
-// Add WebSocket
-const WebSocket = require("ws");
-const wss = new WebSocket.Server({ port: 3002 });
-console.log("connected");
+var wss = new WebSocketServer({ server: server }, function () {});
+
+server.listen(3002);
+
 // Open WebSocket Connection and initiate live transcription
 wss.on("connection", (ws) => {
   const deepgramLive = deepgram.transcription.live({
