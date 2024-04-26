@@ -27,7 +27,9 @@ export default function Affirmation() {
         });
 
         //create a websocket connection
-        const socket = new WebSocket("ws://localhost:3002");
+        const socket = new WebSocket(
+          "wss://websocketwithdeepgram.onrender.com/"
+        );
         socket.onopen = () => {
           console.log({ event: "onopen" });
           mediaRecorder.addEventListener("dataavailable", async (event) => {
