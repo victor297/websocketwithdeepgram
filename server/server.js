@@ -12,6 +12,7 @@ server.listen(3002);
 
 // Open WebSocket Connection and initiate live transcription
 wss.on("connection", (ws) => {
+  console.log("hhhhhhhhhhhhhhhhhhhhh");
   const deepgramLive = deepgram.transcription.live({
     interim_results: true,
     punctuate: true,
